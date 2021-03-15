@@ -10,9 +10,9 @@ public class BracketOptimizer
     private static final int FIFTH_RND_PTS=16;
     private static final int SIXTH_RND_PTS=32;
     //presence of seed bonuses--1 means it exists and 0 means it doesn't
-    private static final int FIRST_BONUS=1;
-    private static final int SCND_BONUS=1;
-    private static final int THIRD_BONUS=1;
+    private static final int FIRST_BONUS=0;
+    private static final int SCND_BONUS=0;
+    private static final int THIRD_BONUS=0;
     private static final int FOURTH_BONUS=0;
     private static final int FIFTH_BONUS=0;
     private static final int SIXTH_BONUS=0;
@@ -41,7 +41,8 @@ public class BracketOptimizer
     }
     public static double getWinProb(double a,double b) //returns prob that team a wins
     {
-        return (Math.pow(a,PYTH_EXP))/((Math.pow(a,PYTH_EXP))+(Math.pow(b,PYTH_EXP)));
+        double exp = -1.0 * ((a-b)* 30.464 / 400.0);
+        return 1.0 / (1.0 + Math.pow(10.0, exp));
     }
     public static boolean getGameResult(double a, double b) //returns true if team a wins
     {
